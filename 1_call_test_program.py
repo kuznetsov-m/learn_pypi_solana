@@ -29,6 +29,7 @@ print(f'initializer_account: {initializer_account.public_key()} balance: {initia
 example_account_1 = Account()
 example_account_2 = Account()
 data = 'my data'
+test_program_id = PublicKey('2DULPG9KnScTtuXLtNjKkYbCnU76HfykVCJU1rszDwet')
 
 txn = Transaction()
 txn.add(
@@ -37,13 +38,13 @@ txn.add(
             AccountMeta(pubkey=example_account_1.public_key(), is_signer=True, is_writable=True),
             AccountMeta(pubkey=example_account_2.public_key(), is_signer=False, is_writable=False),
         ],
-        program_id=SYS_PROGRAM_ID,
+        program_id=test_program_id,
         data=data
     )
 )
 
-client.send_transaction(
+rpc_response = client.send_transaction(
     txn,
-    initializer_account,
+    initializer_account, example_account_1, example_account_2,
     opts=TxOpts(skip_preflight=True, skip_confirmation=False)
 )
