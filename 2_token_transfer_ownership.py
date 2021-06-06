@@ -50,15 +50,19 @@ print(f'token_x_account_pubkey: {token_x_account_pubkey}')
 
 test_program_keypair = [42,126,209,101,182,11,110,103,64,11,125,3,77,237,86,140,99,131,0,181,152,37,25,20,74,220,91,92,170,24,220,176,31,42,156,100,224,241,175,248,175,59,57,167,219,153,17,228,40,106,38,177,134,107,203,228,147,122,71,65,0,219,199,143]
 test_program_account = Account(test_program_keypair[:32])
+print(f'test_program_account pubkey: {test_program_account.public_key()}')
 
 rpc_response = token_x.set_authority_custum(
     account=token_x_account_pubkey,
     current_authority=initializer_account.public_key(),
-    authority_type=AuthorityType.ACCOUNT_OWNER
+    authority_type=AuthorityType.ACCOUNT_OWNER,
+    new_authority=test_program_account.public_key()
 )
-# initializer_account: EjgZsApz7CFqSHPqxKS7UYXdmnEP39UviXo5D6TWLhDM balance: 978297040
-# token_x mint pubkey: CjrH8m1AJupDV4botFX1ioS8mh1htfUbtKv8ZvAuj7DV
-# token_x_account_pubkey: HDWJUvic6MHsaU2keEAkBXNHtPZHADNZ2Um8joqcW5QA
-# Error:
-# {'code': -32002, 'message': 'Transaction simulation failed: Error processing Instruction 0: custom program error: 0xc', 'data': {'err': {'InstructionError': [0, {'Custom': 12}]}, 'logs': ['Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [1]', 'Program log: Instruction: SetAuthority', 'Program log: Error: Invalid instruction', 'Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 2021 of 200000 compute units', 'Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA failed: custom program error: 0xc']}}
 print(f'rpc_response: {rpc_response}')
+
+# output:
+# initializer_account: EjgZsApz7CFqSHPqxKS7UYXdmnEP39UviXo5D6TWLhDM balance: 974776160
+# token_x mint pubkey: DXg9FWw4Ue5tkq7eZehFxRb4KTco1vigz3hCq39Df7X7
+# token_x_account_pubkey: 2ywBg8iLhaZxs5or96UtMAuzqMRxV3VawenQeH7oGDCs
+# test_program_account pubkey: 36fKnjRiRPArHrrjpuN4eCTb9RtQHSALpychq7eAZuTk
+# rpc_response: {'jsonrpc': '2.0', 'result': '3xRYf7PjyC26AFDPB1VbgyD9sfenEszvo34b3ETBYYUoH2SZubxxduwFutSpgvWXV21LN7FknvQupHptwE7FQrp6', 'id': 19}
