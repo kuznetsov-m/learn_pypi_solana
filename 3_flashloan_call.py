@@ -55,6 +55,7 @@ txn.add(
         keys=[
             AccountMeta(pubkey=source_liquidity_publickey, is_signer=False, is_writable=True),
             AccountMeta(pubkey=destination_liquidity_account.public_key(), is_signer=False, is_writable=True),
+            AccountMeta(pubkey=reserve_publickey, is_signer=False, is_writable=True),
             AccountMeta(pubkey=lending_market_publickey, is_signer=False, is_writable=False),
             AccountMeta(pubkey=lending_market_derived_authority_publickey, is_signer=False, is_writable=False),
             AccountMeta(pubkey=token_lending_program_pubkey, is_signer=False, is_writable=False),
@@ -83,7 +84,7 @@ print(f'rpc_response: {json.dumps(rpc_response, indent=2)}')
 # rpc_response: {
 #   "jsonrpc": "2.0",
 #   "result": {
-#     "blockTime": 1623012741,
+#     "blockTime": 1623013229,
 #     "meta": {
 #       "err": {
 #         "InstructionError": [
@@ -97,13 +98,14 @@ print(f'rpc_response: {json.dumps(rpc_response, indent=2)}')
 #         "Program 6h5geweHee42FbxZrYAcYJ8SGVAjG6sGow5dtzcKtrJw invoke [1]",
 #         "Program log: Instruction: Flash Loan",
 #         "Program log: Error: NotEnoughAccountKeys",
-#         "Program 6h5geweHee42FbxZrYAcYJ8SGVAjG6sGow5dtzcKtrJw consumed 2448 of 200000 compute units",
+#         "Program 6h5geweHee42FbxZrYAcYJ8SGVAjG6sGow5dtzcKtrJw consumed 2712 of 200000 compute units",
 #         "Program 6h5geweHee42FbxZrYAcYJ8SGVAjG6sGow5dtzcKtrJw failed: insufficient account keys for instruction"
 #       ],
 #       "postBalances": [
-#         913043280,
+#         913038280,
 #         23049280,
 #         0,
+#         4809360,
 #         2039280,
 #         2049280,
 #         2463840,
@@ -112,9 +114,10 @@ print(f'rpc_response: {json.dumps(rpc_response, indent=2)}')
 #       ],
 #       "postTokenBalances": [],
 #       "preBalances": [
-#         913048280,
+#         913043280,
 #         23049280,
 #         0,
+#         4809360,
 #         2039280,
 #         2049280,
 #         2463840,
@@ -132,13 +135,14 @@ print(f'rpc_response: {json.dumps(rpc_response, indent=2)}')
 #         }
 #       }
 #     },
-#     "slot": 60906484,
+#     "slot": 60907639,
 #     "transaction": {
 #       "message": {
 #         "accountKeys": [
 #           "EjgZsApz7CFqSHPqxKS7UYXdmnEP39UviXo5D6TWLhDM",
 #           "C7PhDXuS9H6a5GfdUrEsakmVWokXRv6jfbRDiAPpVEtE",
-#           "6daJYjsdonCTMudciB32q9WDCZm4TTDNVaYJ25WycLzX",
+#           "6m4y6Bn6xb6QSEpaY669oZK94MsLTttWwvrN5S3QAuDF",
+#           "Bfs6BTc2t6Epb9hjGpLpQcSmQ1ZycKsEv6mV3QuV3VzZ",
 #           "ESApvknZkcGwee2rhjL7yGKyabtdCvDJ28US8VhsWutw",
 #           "6oLtsmgq3kMTJs11eM4rpdcQjyMAXw84VvTUAi2XHnqu",
 #           "9cu7LXZYJ6oNNi7X4anv2LP8NP58h8zKiE61LMcgJt5h",
@@ -155,22 +159,23 @@ print(f'rpc_response: {json.dumps(rpc_response, indent=2)}')
 #             "accounts": [
 #               1,
 #               2,
-#               5,
+#               3,
 #               6,
 #               7,
-#               3,
-#               4
+#               8,
+#               4,
+#               5
 #             ],
 #             "data": "AbembKSHM9tK",
-#             "programIdIndex": 7
+#             "programIdIndex": 8
 #           }
 #         ],
-#         "recentBlockhash": "6J1zfpQmrV5xwjBnhVdBh4QnH2ruMBVHA9UeHvASKroc"
+#         "recentBlockhash": "ARRoPzbBAs4gTqdXwa8zXeb7ZrJ7pX2uZDWCBcp7Ha5o"
 #       },
 #       "signatures": [
-#         "5nS5JH8FpzgXunKCm7nFbjdZsQhaJpBxFBUTu7iUb3bY6M54yK6MyeRnJV8pASFFGj3DbveULRDaHdZioPxUByzY"
+#         "4747xK6CMxH7ejjY4F7K3oi51H2Y2JnWR6NtZF5BPSSanLe7q9h5nd7guVgL5PpkyHE7EFbc4M7J7EL9Q5tjAfrm"
 #       ]
 #     }
 #   },
-#   "id": 5
+#   "id": 6
 # }
