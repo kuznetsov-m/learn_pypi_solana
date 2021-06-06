@@ -28,8 +28,8 @@ print(f'initializer_account: {initializer_account.public_key()} balance: {initia
 
 example_account_1 = Account()
 example_account_2 = Account()
-data = 'my data'
-test_program_id = PublicKey('2DULPG9KnScTtuXLtNjKkYbCnU76HfykVCJU1rszDwet')
+data = b'\x00\x00\x00'
+test_program_id = PublicKey('HubCS6PhtoqtBHGyNFX7BTSk6cRUjNsBmT5gSxAMSWPh')
 
 txn = Transaction()
 txn.add(
