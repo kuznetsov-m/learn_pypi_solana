@@ -48,3 +48,4 @@ rpc_response = client.send_transaction(
     initializer_account, example_account_1, example_account_2,
     opts=TxOpts(skip_preflight=True, skip_confirmation=False)
 )
+print(f'rpc_response: {rpc_response}')
