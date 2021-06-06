@@ -27,8 +27,11 @@ if initializer_balance == 0:
 print(f'initializer_account: {initializer_account.public_key()} balance: {initializer_balance}')
 
 
-keypair = [42,126,209,101,182,11,110,103,64,11,125,3,77,237,86,140,99,131,0,181,152,37,25,20,74,220,91,92,170,24,220,176,31,42,156,100,224,241,175,248,175,59,57,167,219,153,17,228,40,106,38,177,134,107,203,228,147,122,71,65,0,219,199,143]
-test_program_account = Account(keypair[:32])
+######################
+# Program state account creation
+
+test_program_keypair = [42,126,209,101,182,11,110,103,64,11,125,3,77,237,86,140,99,131,0,181,152,37,25,20,74,220,91,92,170,24,220,176,31,42,156,100,224,241,175,248,175,59,57,167,219,153,17,228,40,106,38,177,134,107,203,228,147,122,71,65,0,219,199,143]
+test_program_account = Account(test_program_keypair[:32])
 
 program_sub_account = Account()
 print(f'program_sub_account pubkey: {program_sub_account.public_key()}')
