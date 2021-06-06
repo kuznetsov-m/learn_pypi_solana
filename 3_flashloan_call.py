@@ -41,7 +41,8 @@ lending_market_derived_authority_publickey = PublicKey(lendingMarketDerivedAutho
 flash_loan_fee_receiver_publickey = PublicKey(flashLoanFeeReceiverPubkey)
 flash_loan_fee_receiver_mint_publickey = PublicKey(flashLoanFeeReceiverMintPubkey)
 host_fee_receiver_publickey = PublicKey(hostFeeReceiverPubkey)
-destination_liquidity_publickey = create_destination_liquidity()
+
+destination_liquidity_account = create_destination_liquidity()
 
 
 data = 'test data'
@@ -51,7 +52,7 @@ txn.add(
     TransactionInstruction(
         keys=[
             AccountMeta(pubkey=source_liquidity_publickey, is_signer=False, is_writable=True),
-            AccountMeta(pubkey=destination_liquidity_publickey, is_signer=False, is_writable=True),
+            AccountMeta(pubkey=destination_liquidity_account.public_key(), is_signer=False, is_writable=True),
             AccountMeta(pubkey=lending_market_publickey, is_signer=False, is_writable=False),
             AccountMeta(pubkey=lending_market_derived_authority_publickey, is_signer=False, is_writable=False),
             AccountMeta(pubkey=token_lending_program_pubkey, is_signer=False, is_writable=False),
