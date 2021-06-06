@@ -45,7 +45,9 @@ host_fee_receiver_publickey = PublicKey(hostFeeReceiverPubkey)
 destination_liquidity_account = create_destination_liquidity()
 
 
-data = 'test data'
+amount = 1 * 10 ** 8       # 1 0000 0000
+tag = 0
+data = tag.to_bytes(1, byteorder='big') + amount.to_bytes(8, byteorder='big')
 
 txn = Transaction()
 txn.add(
@@ -73,4 +75,106 @@ rpc_response = client.send_transaction(
     my_tmp_account,
     opts=TxOpts(skip_preflight=True, skip_confirmation=False)
 )
-print(f'rpc_response: {rpc_response}')
+print(f'rpc_response: {json.dumps(rpc_response, indent=2)}')
+
+# output
+# my_tmp_account: EjgZsApz7CFqSHPqxKS7UYXdmnEP39UviXo5D6TWLhDM
+# Transaction error: {'InstructionError': [0, {'Custom': 0}]}
+# rpc_response: {
+#   "jsonrpc": "2.0",
+#   "result": {
+#     "blockTime": 1623012362,
+#     "meta": {
+#       "err": {
+#         "InstructionError": [
+#           0,
+#           {
+#             "Custom": 0
+#           }
+#         ]
+#       },
+#       "fee": 5000,
+#       "innerInstructions": [],
+#       "logMessages": [
+#         "Program 6h5geweHee42FbxZrYAcYJ8SGVAjG6sGow5dtzcKtrJw invoke [1]",
+#         "Program log: Pubkey cannot be unpacked",
+#         "Program log: Failed to unpack instruction data",
+#         "Program 6h5geweHee42FbxZrYAcYJ8SGVAjG6sGow5dtzcKtrJw consumed 2712 of 200000 compute units",
+#         "Program 6h5geweHee42FbxZrYAcYJ8SGVAjG6sGow5dtzcKtrJw failed: custom program error: 0x0"
+#       ],
+#       "postBalances": [
+#         913048280,
+#         23049280,
+#         0,
+#         2039280,
+#         2049280,
+#         2463840,
+#         0,
+#         1141440
+#       ],
+#       "postTokenBalances": [],
+#       "preBalances": [
+#         913053280,
+#         23049280,
+#         0,
+#         2039280,
+#         2049280,
+#         2463840,
+#         0,
+#         1141440
+#       ],
+#       "preTokenBalances": [],
+#       "rewards": [],
+#       "status": {
+#         "Err": {
+#           "InstructionError": [
+#             0,
+#             {
+#               "Custom": 0
+#             }
+#           ]
+#         }
+#       }
+#     },
+#     "slot": 60905580,
+#     "transaction": {
+#       "message": {
+#         "accountKeys": [
+#           "EjgZsApz7CFqSHPqxKS7UYXdmnEP39UviXo5D6TWLhDM",
+#           "C7PhDXuS9H6a5GfdUrEsakmVWokXRv6jfbRDiAPpVEtE",
+#           "49xPAb3dy8Qa7Y6ZhFy8ZU8Q2kU9oG9x86zbtYqi9Sai",
+#           "ESApvknZkcGwee2rhjL7yGKyabtdCvDJ28US8VhsWutw",
+#           "6oLtsmgq3kMTJs11eM4rpdcQjyMAXw84VvTUAi2XHnqu",
+#           "9cu7LXZYJ6oNNi7X4anv2LP8NP58h8zKiE61LMcgJt5h",
+#           "4B3rs3z48eW1iw3JNTrQZsTJnCqEbFMuGVk3TVMAtQeM",
+#           "6h5geweHee42FbxZrYAcYJ8SGVAjG6sGow5dtzcKtrJw"
+#         ],
+#         "header": {
+#           "numReadonlySignedAccounts": 0,
+#           "numReadonlyUnsignedAccounts": 3,
+#           "numRequiredSignatures": 1
+#         },
+#         "instructions": [
+#           {
+#             "accounts": [
+#               1,
+#               2,
+#               5,
+#               6,
+#               7,
+#               3,
+#               4
+#             ],
+#             "data": "111119qXWw",
+#             "programIdIndex": 7
+#           }
+#         ],
+#         "recentBlockhash": "9LNyPEhX7e58hhYHPXLhfnwQT8ybzgsRnfgDhSKxh1xn"
+#       },
+#       "signatures": [
+#         "c4E8SggDHsGiyVYF22YZgKJNvoW1YKUEUNRrM5rde6sFTnxupuEqZcdxAc3KwNG4DMhEGcBftBUfGtGVLFRJW2C"
+#       ]
+#     }
+#   },
+#   "id": 5
+# }
