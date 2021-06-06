@@ -46,7 +46,7 @@ destination_liquidity_account = create_destination_liquidity()
 
 
 amount = 1 * 10 ** 8       # 1 0000 0000
-tag = 0
+tag = 13
 data = tag.to_bytes(1, byteorder='big') + amount.to_bytes(8, byteorder='big')
 
 txn = Transaction()
@@ -79,31 +79,29 @@ print(f'rpc_response: {json.dumps(rpc_response, indent=2)}')
 
 # output
 # my_tmp_account: EjgZsApz7CFqSHPqxKS7UYXdmnEP39UviXo5D6TWLhDM
-# Transaction error: {'InstructionError': [0, {'Custom': 0}]}
+# Transaction error: {'InstructionError': [0, 'NotEnoughAccountKeys']}
 # rpc_response: {
 #   "jsonrpc": "2.0",
 #   "result": {
-#     "blockTime": 1623012362,
+#     "blockTime": 1623012741,
 #     "meta": {
 #       "err": {
 #         "InstructionError": [
 #           0,
-#           {
-#             "Custom": 0
-#           }
+#           "NotEnoughAccountKeys"
 #         ]
 #       },
 #       "fee": 5000,
 #       "innerInstructions": [],
 #       "logMessages": [
 #         "Program 6h5geweHee42FbxZrYAcYJ8SGVAjG6sGow5dtzcKtrJw invoke [1]",
-#         "Program log: Pubkey cannot be unpacked",
-#         "Program log: Failed to unpack instruction data",
-#         "Program 6h5geweHee42FbxZrYAcYJ8SGVAjG6sGow5dtzcKtrJw consumed 2712 of 200000 compute units",
-#         "Program 6h5geweHee42FbxZrYAcYJ8SGVAjG6sGow5dtzcKtrJw failed: custom program error: 0x0"
+#         "Program log: Instruction: Flash Loan",
+#         "Program log: Error: NotEnoughAccountKeys",
+#         "Program 6h5geweHee42FbxZrYAcYJ8SGVAjG6sGow5dtzcKtrJw consumed 2448 of 200000 compute units",
+#         "Program 6h5geweHee42FbxZrYAcYJ8SGVAjG6sGow5dtzcKtrJw failed: insufficient account keys for instruction"
 #       ],
 #       "postBalances": [
-#         913048280,
+#         913043280,
 #         23049280,
 #         0,
 #         2039280,
@@ -114,7 +112,7 @@ print(f'rpc_response: {json.dumps(rpc_response, indent=2)}')
 #       ],
 #       "postTokenBalances": [],
 #       "preBalances": [
-#         913053280,
+#         913048280,
 #         23049280,
 #         0,
 #         2039280,
@@ -129,20 +127,18 @@ print(f'rpc_response: {json.dumps(rpc_response, indent=2)}')
 #         "Err": {
 #           "InstructionError": [
 #             0,
-#             {
-#               "Custom": 0
-#             }
+#             "NotEnoughAccountKeys"
 #           ]
 #         }
 #       }
 #     },
-#     "slot": 60905580,
+#     "slot": 60906484,
 #     "transaction": {
 #       "message": {
 #         "accountKeys": [
 #           "EjgZsApz7CFqSHPqxKS7UYXdmnEP39UviXo5D6TWLhDM",
 #           "C7PhDXuS9H6a5GfdUrEsakmVWokXRv6jfbRDiAPpVEtE",
-#           "49xPAb3dy8Qa7Y6ZhFy8ZU8Q2kU9oG9x86zbtYqi9Sai",
+#           "6daJYjsdonCTMudciB32q9WDCZm4TTDNVaYJ25WycLzX",
 #           "ESApvknZkcGwee2rhjL7yGKyabtdCvDJ28US8VhsWutw",
 #           "6oLtsmgq3kMTJs11eM4rpdcQjyMAXw84VvTUAi2XHnqu",
 #           "9cu7LXZYJ6oNNi7X4anv2LP8NP58h8zKiE61LMcgJt5h",
@@ -165,14 +161,14 @@ print(f'rpc_response: {json.dumps(rpc_response, indent=2)}')
 #               3,
 #               4
 #             ],
-#             "data": "111119qXWw",
+#             "data": "AbembKSHM9tK",
 #             "programIdIndex": 7
 #           }
 #         ],
-#         "recentBlockhash": "9LNyPEhX7e58hhYHPXLhfnwQT8ybzgsRnfgDhSKxh1xn"
+#         "recentBlockhash": "6J1zfpQmrV5xwjBnhVdBh4QnH2ruMBVHA9UeHvASKroc"
 #       },
 #       "signatures": [
-#         "c4E8SggDHsGiyVYF22YZgKJNvoW1YKUEUNRrM5rde6sFTnxupuEqZcdxAc3KwNG4DMhEGcBftBUfGtGVLFRJW2C"
+#         "5nS5JH8FpzgXunKCm7nFbjdZsQhaJpBxFBUTu7iUb3bY6M54yK6MyeRnJV8pASFFGj3DbveULRDaHdZioPxUByzY"
 #       ]
 #     }
 #   },
