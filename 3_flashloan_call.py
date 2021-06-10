@@ -21,6 +21,7 @@ lendingMarketDerivedAuthorityPubkey = '4B3rs3z48eW1iw3JNTrQZsTJnCqEbFMuGVk3TVMAt
 flashLoanFeeReceiverPubkey = 'ESApvknZkcGwee2rhjL7yGKyabtdCvDJ28US8VhsWutw'
 flashLoanFeeReceiverMintPubkey = 'So11111111111111111111111111111111111111112'
 hostFeeReceiverPubkey = '6oLtsmgq3kMTJs11eM4rpdcQjyMAXw84VvTUAi2XHnqu'
+flash_loan_program_derived_authority = 'CQUV8znxqS1td7QZVywf2g5pmwGgUjh8WWKoNsHBPiuF'
 
 flash_loan_program_id = PublicKey('2HrfwEiotfbaAKqSiqscZcc1BnLNhDY8NfeyKVHC9y6p')
 
@@ -85,6 +86,7 @@ lending_market_derived_authority_publickey = PublicKey(lendingMarketDerivedAutho
 flash_loan_fee_receiver_publickey = PublicKey(flashLoanFeeReceiverPubkey)
 flash_loan_fee_receiver_mint_publickey = PublicKey(flashLoanFeeReceiverMintPubkey)
 host_fee_receiver_publickey = PublicKey(hostFeeReceiverPubkey)
+flash_loan_program_derived_authority_publickey = PublicKey(flash_loan_program_derived_authority)
 
 destination_liquidity_publickey = create_destination_liquidity(my_tmp_account)
 
@@ -105,9 +107,10 @@ txn.add(
             AccountMeta(pubkey=lending_market_publickey, is_signer=False, is_writable=False),
             AccountMeta(pubkey=lending_market_derived_authority_publickey, is_signer=False, is_writable=False),
             AccountMeta(pubkey=flash_loan_program_id, is_signer=False, is_writable=False),
-            AccountMeta(pubkey=flash_loan_fee_receiver_publickey, is_signer=False, is_writable=False),
+            AccountMeta(pubkey=flash_loan_fee_receiver_publickey, is_signer=False, is_writable=True),
             AccountMeta(pubkey=host_fee_receiver_publickey, is_signer=False, is_writable=True),
-            AccountMeta(pubkey=TOKEN_PROGRAM_ID, is_signer=False, is_writable=False)
+            AccountMeta(pubkey=TOKEN_PROGRAM_ID, is_signer=False, is_writable=False),
+            AccountMeta(pubkey=flash_loan_program_derived_authority_publickey, is_signer=False, is_writable=False)
         ],
         program_id=token_lending_program_pubkey,
         data=data
